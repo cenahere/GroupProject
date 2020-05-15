@@ -1,0 +1,109 @@
+<div class="text-center">
+    <h4 style="font-family: 'Droid-Arabic-Kufi'; font-weight: bolder;">
+        يوجد {{ pagination.totalItems }}
+        <span *ngIf="pagination.totalItems > 10">اقتراح</span>
+        <span *ngIf="pagination.totalItems <= 10 && pagination.totalItems != 0">اقتراحات</span>
+    </h4>
+    <h4 *ngIf="pagination.totalItems == 0" style="font-family: 'Droid-Arabic-Kufi'; font-weight: bolder;">
+        <span>لا توجد اقتراحات </span>
+    </h4>
+</div>
+
+
+
+<div class="rtl container mt-3">
+    <form dir="rtl" form="ngForm" (ngSubmit)="getUserAdmin()" class="form-inline" novalidate>
+        <div class="form-group px-2">
+            <label for="gender"> نوع العضو </label>
+            <select [(ngModel)]="adminParams.gender" class="form-control ml-1" style="width: 130px;" id="gender" name="gender">
+                    <option *ngFor="let gender of genderList" [value]="gender.value">
+                      {{ gender.display }}
+                    </option>
+                  </select>
+        </div>
+
+        <div class="form-group px-2">
+            <label class="control-label" for="userClassName">
+                  الفصل الدراسي
+                </label>
+            <select id="userClassName" class="form-control" name="userClassName" [(ngModel)]="adminParams.userClassName">
+                  <option *ngFor="let c of userClass" [value]="c.userClassName">
+                    {{ c.userClassName }}</option>
+                </select>
+        </div>
+
+
+        <div class="form-group px-2">
+            <label class="control-label" for="userGroupName">
+                    المجموعة
+                  </label>
+            <select id="userGroupName" class="form-control" name="userGroupName" [(ngModel)]="adminParams.userGroupName">
+                    <option *ngFor="let c of userGroups" [value]="c.userGroupName">
+                      {{ c.userGroupName }}</option>
+                  </select>
+        </div>
+
+
+
+
+
+        <button type="submit" style="font-family: 'JF-FLAT';" class="btn btn-dark btn-small ml-2 mr-2">
+                  بحث
+                </button>
+
+    </form>
+</div>
+
+<br />
+
+
+<div class=container>
+
+
+
+
+    <table class='table table-bordered table-hover'>
+        <tr>
+            <th>المسلسل</th>
+            <th> User Name</th>
+            <th>Password</th>
+            <th>الاسم </th>
+            <th> هاتف العضو</th>
+            <th> اسم ولي الامر</th>
+            <th> هاتف ولي الامر</th>
+            <th>الفصل الدراسي </th>
+            <th>المجموعة</th>
+            <th>القرية</th>
+            <th>عمليات</th>
+        </tr>
+        <tr *ngFor="let user of users ; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{ user.userName }}</td>
+            <td>{{ user.password }}</td>
+            <td>{{ user.arabicName}}</td>
+            <td>{{ user.userPhone}}</td>
+            <td>{{ user.guardianName}}</td>
+            <td>{{ user.guardianPhone}}</td>
+            <td>{{ user.userClassName}}</td>
+            <td>{{ user.userGroupName}}</td>
+            <td>{{ user.userVillageName}}</td>
+            <td>
+
+                <div class="btn-group btn-group-sm" role="group">
+                    <button class="mr-2" class='btn btn-danger' (click)='updateUserByAdmin(user)'>تعديل </button>
+                    <button class="mr-2" class='btn btn-primary' (click)="addUserAttend(user)">الغياب </button>
+                    <button class="mr-2" class='btn btn-info' (click)="addUserExam(user)">الامتحان </button>
+                    <button class="mr-2" class='btn btn-primary' (click)='addUserPay(user)'>الدفع </button>
+                    <button class="mr-2" class='btn btn-warning' [routerLink]="['/userToAdmin/' , user.id]">التفاصيل</button>
+                </div>
+
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="d-flex justify-content-center">
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemPerPage" [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+    </pagination>
+</div>

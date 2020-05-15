@@ -1,0 +1,39 @@
+<div class=container>
+
+    <mat-form-field appearance="fill" style="text-align:right">
+        <mat-label style="margin-right:10px; color:black; font-weight: bold; font-family: JF-Flat;">بحث</mat-label>
+        <input matInput style='font-family: JF-Flat;' [(ngModel)]="term">
+    </mat-form-field>
+
+    <table class='table table-hover table-bordered'>
+        <tr>
+            <th>المسلسل</th>
+
+            <th>عنوان الاختبار</th>
+            <th>النتيجة </th>
+            <th>النهاية</th>
+            <th>التقييم</th>
+            <th>التاريخ</th>
+            <th>الملاحظات</th>
+            <th>عمليات</th>
+        </tr>
+        <tr *ngFor="let uc of userExams | filter:term | paginate: { itemsPerPage: 20, currentPage: p} ;  index as i">
+            <td>{{i+1}}</td>
+            <td>{{uc.examTitle}}</td>
+            <td>{{uc.result}}</td>
+            <td>{{uc.finalResult}}</td>
+            <td>{{uc.evaluation}}</td>
+            <td>{{uc.examDate | date :'longDate'}}</td>
+            <td> {{ uc.notes }}</td>
+            <td>
+                <div class="btn-group btn-group-sm" role="group">
+
+                    <button mat-raised-button color="primary" class="mr-2 btn" (click)='updateUserExam(uc)'>تعديل</button>
+                    <button mat-raised-button color="accent" class="btn" (click)='deleteExam(uc)'>حذف </button>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</div>
+<pagination-controls (pageChange)="p = $event" class='text-center mt-4'></pagination-controls>

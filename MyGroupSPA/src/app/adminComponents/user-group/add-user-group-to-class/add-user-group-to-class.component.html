@@ -1,0 +1,14 @@
+<div dir="rtl" class="modal-header ajs-header">
+    <h4 class="modal-title page-header"> اضافة مجموعة للفصل الدراسي  </h4>
+</div>
+<div dir="rtl" class="modal-body">
+    <form #myForm='ngForm' id="myForm" >
+        <input type='text' class='form-control mb-2' name="userGroupName" [(ngModel)]="model.userGroupName"
+            placeholder="اسم المجموعة">
+        <input type='text' class='form-control' name="notes" [(ngModel)]="model.notes" placeholder=" ملاحظات">
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()">الغاء</button>
+    <button type="submit" class="btn btn-success" form='myForm' (click)="addGroupToClass()">اضافة</button>
+</div>

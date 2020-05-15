@@ -1,0 +1,15 @@
+<div class="modal-header ajs-header">
+    <h4 class="modal-title page-header"> تعديل الحضور </h4>
+</div>
+<div class="modal-body">
+    <form #updateForm='ngForm' id="updateForm" (ngSubmit)='updateUserAttendd(userAttend)'>
+        <input type='text' class='form-control' name="attendSituation" [(ngModel)]="userAttend.attendSituation">
+        <input type='text' class='form-control' name="reasonOfAbsence" [(ngModel)]="userAttend.reasonOfAbsence">
+        <input type='text' class='form-control' name="notes" [(ngModel)]="userAttend.notes">
+        <input type='date' hidden class='form-control' name="attendDate" [(ngModel)]="userAttend.attendDate">
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-primary" form='updateForm'>تعديل</button>
+    <button type="button" class="btn btn-danger" (click)="bsModalRef.hide()">الغاء</button>
+</div>

@@ -1,0 +1,71 @@
+<div class="rtl container mt-4 ">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card text-center">
+                  <div class="card-body" style='height: 600px; background-color: #343a40; color:blanchedalmond; font-family: JF-Flat ;'>
+
+                    <div>
+                        <h2  style="font-family: JF-Flat;">الفصل الدراسي</h2>
+                        <p style="font-family: JF-Flat;">{{userClass.userClassName}}</p>
+                    </div>
+
+                    <div>
+                        <h2  style="font-family: JF-Flat;">الملاحظات</h2>
+                        <p style="font-family: JF-Flat;">{{userClass.notes}}</p>
+                    </div>
+
+
+                </div>
+
+                <div class="card-footer">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            <div class="tab-panel">
+                <tabset class='member-tabset'>
+                    <tab heading=" الطلاب">
+                        <div class=container>
+                       
+                             
+                              <mat-form-field appearance="fill" style="text-align:right" >
+                                <mat-label style="margin-right:10px; color:black; font-weight: bold; font-family: JF-Flat;">بحث</mat-label>
+                                <input matInput style='font-family: JF-Flat;' [(ngModel)]="term">
+                              </mat-form-field>
+                              
+                        
+                          
+                            <table class='table table-bordered table-hover'>
+                              <tr>
+                                  <th>المسلسل</th>
+                                <th> اسم الطالب</th>
+                                <th>اسم ولي الامر</th>
+                                <th>المجموعة</th>
+                                <th>عمليات</th>
+                        
+                            </tr>
+                              <tr *ngFor="let c of userClass.users | filter:term | paginate: { itemsPerPage: 10, currentPage: p} ; index as ii">
+                                <td>{{ ii+1 }}</td>
+                                <td>{{ c.arabicName}}</td>
+                                <td>{{ c.guardianName}}</td>
+                                <td>{{ userClass?.userGroupName}}</td>
+                                <td>
+                                 
+                            <div class="btn-group btn-group-sm" role="group">
+                                <button class="mr-2" class='btn btn-success btn-sm'>+</button>        
+                            </div>
+                        
+                                </td>
+                              </tr>
+                            </table>
+                          </div>
+                          <pagination-controls (pageChange)="p = $event" class='text-center mt-4'></pagination-controls>
+                          
+                    </tab>
+                </tabset>
+            </div>
+        </div>
+    </div>
+</div>

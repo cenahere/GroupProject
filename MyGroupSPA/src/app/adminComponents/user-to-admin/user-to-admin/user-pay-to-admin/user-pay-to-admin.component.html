@@ -1,0 +1,35 @@
+<div class=container>
+
+    <mat-form-field appearance="fill" style="text-align:right">
+        <mat-label style="margin-right:10px; color:black; font-weight: bold; font-family: JF-Flat;">بحث</mat-label>
+        <input matInput style='font-family: JF-Flat;' [(ngModel)]="term">
+    </mat-form-field>
+
+    <table class='table table-hover table-bordered'>
+        <tr>
+            <th>موقف الدفع</th>
+            <th>المطلوب </th>
+            <th>الخصم</th>
+            <th>المدفوع</th>
+            <th>التاريخ</th>
+            <th>عمليات</th>
+        </tr>
+        <tr *ngFor="let uc of userPays | filter:term | paginate: { itemsPerPage: 20, currentPage: p} ;  index as i">
+            <td>{{i+1}}</td>
+            <td>{{uc.attendSituation}}</td>
+            <td>{{uc.price}}</td>
+            <td>{{uc.discount}}</td>
+            <td>{{uc.priceWithDescount}}</td>
+            <td>{{uc.payDate | date :'longDate'}}</td>
+            <td>
+                <div class="btn-group btn-group-sm" role="group">
+
+                    <button mat-raised-button color="primary" class="mr-2 btn" (click)='updateUserPay(uc)'>تعديل</button>
+                    <button mat-raised-button color="accent" class="btn" (click)='deletePay(uc)'>حذف </button>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</div>
+<pagination-controls (pageChange)="p = $event" class='text-center mt-4'></pagination-controls>

@@ -1,0 +1,65 @@
+<div class="rtl container mt-4 ">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card text-center">
+                <img class='card-img-top img-thumbnail' src='{{user?.photoUrl || "assets/userPic.png"}}' alt="">
+                <div class="card-body">
+
+                    <div>
+                        <strong>الاسم باللغة العربية</strong>
+                        <p>{{user.arabicName}}</p>
+                    </div>
+
+                    <div>
+                        <strong>اسم ولي الامر</strong>
+                        <p>{{user.guardianName}}</p>
+                    </div>
+
+                    <div>
+                        <strong>تاريخ الميلاد</strong>
+                        <p>{{user.dateOfBirth}}</p>
+                    </div>
+
+                    <div>
+                        <strong>اخر ظهور</strong>
+                        <p>{{user.lastActive | timeAgo}}</p>
+                    </div>
+
+                    <div>
+                        <strong>مشترك منذ</strong>
+                        <p>{{ user.created }}</p>
+                    </div>
+                    <div>
+                        <strong> الفصل الدراسي</strong>
+                        <p>{{ user.userClassName }}</p>
+                    </div>
+                    <div>
+                        <strong> محل الاقامة</strong>
+                        <p>{{ user.userVillageName }} , {{user.userCityName}} , {{user.userGovernorateName}} , {{user.userCountryName}}</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            <div class="tab-panel">
+                <tabset class='member-tabset'>
+                    <tab heading="  حضور الطالب">
+                        <app-user-attend-to-admin [userAttends]='user.userAttends'></app-user-attend-to-admin>
+                    </tab>
+                    <tab heading="امتحانات الطالب">
+                        <app-user-exam-to-admin [userExams]='user.userExams'></app-user-exam-to-admin>
+
+                    </tab>
+
+                    <tab heading="سداد الطالب">
+
+                        <app-user-pay-to-admin [userPays]='user.userPays'></app-user-pay-to-admin>
+                    </tab>
+                </tabset>
+            </div>
+        </div>
+    </div>
+</div>

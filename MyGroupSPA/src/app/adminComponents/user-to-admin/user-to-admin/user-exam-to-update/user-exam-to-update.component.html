@@ -1,0 +1,16 @@
+<div class="modal-header ajs-header">
+    <h4 class="modal-title page-header"> تعديل الاختبار </h4>
+</div>
+<div class="modal-body">
+    <form #updateForm='ngForm' id="updateForm" (ngSubmit)='updateUserExamm(userExam)'>
+        <input type='text' class='form-control' name="examTitle" [(ngModel)]="userExam.examTitle">
+        <input type='text' class='form-control' name="result" [(ngModel)]="userExam.result">
+        <input type='text' class='form-control' name="evaluation" [(ngModel)]="userExam.evaluation">
+        <input type='text' class='form-control' name="notes" [(ngModel)]="userExam.notes">
+        <input type='date' hidden class='form-control' name="examDate" [(ngModel)]="userExam.examDate">
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-primary" form='updateForm'>تعديل</button>
+    <button type="button" class="btn btn-danger" (click)="bsModalRef.hide()">الغاء</button>
+</div>

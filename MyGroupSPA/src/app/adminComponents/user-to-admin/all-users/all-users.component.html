@@ -1,0 +1,53 @@
+<div class=container>
+
+
+       
+    <mat-form-field appearance="fill" style="text-align:right">
+        <mat-label style="margin-right:10px; color:black; font-weight: bold; font-family: JF-Flat;">بحث</mat-label>
+        <input matInput style='font-family: JF-Flat;' [(ngModel)]="term">
+      </mat-form-field>
+
+
+  <table class='table table-bordered table-hover'>
+    <tr>
+      <th>المسلسل</th>
+      <th> User Name</th>
+      <th>Password</th>
+      <th>الاسم </th>
+      <th> هاتف العضو</th>
+      <th> اسم ولي الامر</th>
+      <th>  هاتف ولي الامر</th>
+      <th>الفصل الدراسي </th>
+      <th>المجموعة</th>
+      <th>القرية</th>
+        <th>الرتب</th>
+      <th>عمليات</th>
+  </tr>
+    <tr *ngFor="let user of userToAdmin | filter:term | paginate: { itemsPerPage: 30, currentPage: p} ;  index as i">
+      <td>{{i+1}}</td>
+      <td>{{ user.userName }}</td>
+      <td>{{ user.password }}</td>
+      <td>{{ user.arabicName}}</td>
+      <td>{{ user.userPhone}}</td>
+      <td>{{ user.guardianName}}</td>
+      <td>{{ user.guardianPhone}}</td>
+      <td>{{ user.userClassName}}</td>
+      <td>{{ user.userGroupName}}</td>
+      <td>{{ user.userVillageName}}</td>
+      <td><span class="role-badge" *ngFor="let role of user.roles">{{role}}</span></td>
+      <td>
+
+  <div class="btn-group btn-group-sm" role="group">
+      <button class="mr-2" class='btn btn-danger btn-sm' (click)="editRolesModal(user);">Edit Role</button>
+     
+
+   
+      
+  </div>
+
+      </td>
+    </tr>
+  </table>
+</div>
+
+<pagination-controls (pageChange)="p = $event" class='text-center mt-4'></pagination-controls>

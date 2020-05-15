@@ -1,0 +1,53 @@
+.nav-link:hover , .nav-link:focus{
+    text-decoration:none;
+    color:white !important;
+  }
+  .nav-link{
+    color:white !important;
+  }
+  .btn-secondary{
+    text-decoration:none;
+    color:black !important;
+    background:White !important;
+    border-radius: 10px;
+  }
+  .btn-secondary:hover{
+    text-decoration:none;
+    color:white !important;
+    background:black !important;
+    border-radius: 25px;
+  }
+  input{
+    border-radius: 10px;
+  }
+
+  .dropdown-toggle , .dropdown-item{
+    cursor: pointer;
+  }
+
+  img{
+    max-height: 50px;
+    border:2px solid white;
+    display: inline;
+    border-radius: 50px;
+}
+
+/* notification */
+.notification {
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.notification .badge {
+  position: absolute;
+  top: 2px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  color: red;
+  background-color: yellow;
+  font-size: 16px;
+  font-family: 'Tajawal'
+}
+

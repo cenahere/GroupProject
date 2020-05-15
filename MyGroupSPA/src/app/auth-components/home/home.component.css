@@ -1,0 +1,31 @@
+.nav-link:hover,
+.nav-link:focus {
+    text-decoration: none;
+    color: white !important;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.btn-secondary {
+    text-decoration: none;
+    color: black !important;
+    background: White !important;
+    border-radius: 10px;
+    font-family: 'JF-Flat';
+}
+
+.btn-secondary:hover {
+    text-decoration: none;
+    color: white !important;
+    background: black !important;
+    border-radius: 25px;
+    font-family: 'JF-Flat';
+}
+
+input {
+    border-radius: 20px;
+    background-color: white;
+    color: black
+}

@@ -1,0 +1,26 @@
+<div dir="rtl" class="modal-header ajs-header">
+    <h4 class="modal-title page-header"> اضافة غياب الطالب </h4>
+</div>
+<div dir="rtl" class="modal-body">
+    <form #myForm='ngForm' id="myForm" >
+        <!-- <input type='text' class='form-control' name="attendSituation" [(ngModel)]="model.attendSituation"
+            placeholder="اضافة  موقف الغياب"> -->
+            
+
+            <div class="form-group" >
+                <label for="attendSituation " class="control-label " style="margin-right:50%; color:white" >  موقف الحضور </label>
+                <select [(ngModel)]="model.attendSituation" class="form-control" style="width: 100%;" id="attendSituation" name="attendSituation">
+                  <option *ngFor="let attend of attendList" [value]="attend.value">
+                    {{ attend.display }}
+                  </option>
+                </select>
+            </div>
+        <input type='text' class='form-control mb-2'   name="reasonOfAbsence" [(ngModel)]="model.reasonOfAbsence" placeholder=" سبب الفياب">
+        <!-- <input type='text' class='form-control' name="attendDate" [(ngModel)]="model.attendDate" placeholder=" التاريخ "> -->
+        <input type='text' class='form-control' name="notes" [(ngModel)]="model.notes" placeholder=" ملاحظات">
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()">الغاء</button>
+    <button type="submit" class="btn btn-success" form='myForm' (click)="addUserAttend()">اضافة</button>
+</div>

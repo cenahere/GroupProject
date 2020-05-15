@@ -1,0 +1,23 @@
+<div class="row">
+    <table class="table" style="white-space:nowrap;max-width: 100%; ">
+        <tr>
+            <th >اسم الطالب </th>
+            <th >المبلغ</th>
+            <th  >العملة</th>
+            <th >تاريخ الدفع</th>
+            <th  >التفاصيل</th>
+            <th >رابط التأكيد</th>
+
+
+        </tr>
+        <tr *ngFor="let pay of payments">
+            <td>{{pay.userName}}</td>
+            <td>{{pay.amount}}</td>
+            <td>{{pay.currency}}</td>
+            <td>{{pay.paymentDate | date:'longDate'}}</td>
+            <td>{{pay.description}}</td>
+            <td style="font-size: 8px; " >{{pay.receiptUrl}}</td>
+
+        </tr>
+    </table>
+</div>

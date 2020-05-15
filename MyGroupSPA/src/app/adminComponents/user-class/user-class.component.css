@@ -1,0 +1,30 @@
+table {
+    width: 100%;
+    color: rgb(10, 1, 1) !important;
+    border-radius: 20px;
+
+}
+
+td {
+    padding: 10px!important;
+    text-align: center;
+    font-family: 'JF-Flat' !important;
+    font-size: 1.1rem !important;
+}
+
+table th {
+    font-family: 'JF-Flat' !important;
+    font-size: 1.2rem !important;
+    text-align: center;
+    border-bottom: 2px solid #E95420 !important;
+    padding: 10px!important;
+}
+
+.btn{
+    font-family:"JF-Flat";
+    font-size: 12px;
+}
+
+.form-inline .form-group {
+    margin:auto;
+  }

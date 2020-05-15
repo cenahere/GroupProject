@@ -1,0 +1,14 @@
+<div class="modal-header ajs-header">
+    <h4 class="modal-title page-header"> تعديل الفصل الدراسي</h4>
+  </div>
+  <div class="modal-body">
+    <form #updateForm='ngForm' id="updateForm" (ngSubmit)='updateUserClass(userClass)'>
+      <input type='text' class='form-control' name="userClassName" [(ngModel)]="userClass.userClassName">
+      <input type='text' class='form-control' name="notes" [(ngModel)]="userClass.notes">
+    </form>    
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" form='updateForm'>تعديل</button>
+    <button type="button" class="btn btn-danger" (click)="bsModalRef.hide()">الغاء</button>
+  </div>
+  

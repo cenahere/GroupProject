@@ -1,0 +1,36 @@
+<div class=container>
+    <form #myForm='ngForm' (ngSubmit)="onSubmit(myForm)" class="form-inline mb-3">
+      <input  type="hidden" name="userGovernorateId"  [(ngModel)]="adminService.selectedGovernorate.userGovernorateId">
+      <div class='form-group'>
+      <label style= "margin-right:10px; color:black; font-weight: bold; font-family: JF-Flat;">ادخل المحافظة</label>
+      <input name='userGovernorateName'  [(ngModel)]="adminService.selectedGovernorate.userGovernorateName" type="text" class="form-control ml-2">
+      <button type="submit" [disabled]="!myForm.valid" class=" btn-sm ml-2"> 
+         <i class="material-icons">save</i>
+      </button>
+    </div>
+    </form>
+     
+      <mat-form-field appearance="fill" style="text-align:right">
+        <mat-label style="margin-right:10px; color:black; font-weight: bold; font-family: JF-Flat;">بحث</mat-label>
+        <input matInput style='font-family: JF-Flat;' [(ngModel)]="term">
+      </mat-form-field>
+  
+    <table>
+      <tr>
+        <th> المحافظة</th>
+        <th>عمليات</th>
+      </tr>
+      <tr *ngFor="let c of userGovernorates | filter:term | paginate: { itemsPerPage: 20, currentPage: p}">
+        <td>{{ c.userGovernorateName }}</td>
+        <td>
+           <!-- c المتغير في التكرار -->
+           <!-- c المتغير في التكرار -->
+       <button class="mr-2" (click)="onEdit(c)"><i class="material-icons">edit</i></button>        
+       <button (click)='deleteUserGovernorate(c.userGovernorateId,myForm)'><i class="material-icons"> delete</i>      
+           </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <pagination-controls (pageChange)="p = $event" class='text-center mt-4'></pagination-controls>
+  

@@ -1,0 +1,226 @@
+<div class='card mt-4 bg-dark' style='border-radius: 50px;'>
+
+    <div class="card-body">
+        <form [formGroup]='registerForm'>
+            <h2 class='text-center mb-3' style='color:white; font-family: "JF-Flat";'>تسجيل جديد كن معنا</h2>
+            <div class='container'>
+                <div class="row">
+
+                    <div style="color:white" class="form-group">
+                        <label class="control-label " style="margin-right:25px">نوع العضو </label>
+                        <label class="radio-inline ml-3  ">
+                            <input class="mr-1" type="radio" value="طالب" formControlName="gender">طالب
+                        </label>
+                        <label class="radio-inline ml-3">
+                            <input class="mr-1" type="radio" value="طالبه" formControlName="gender">طالبه
+                        </label>
+                        <label class="radio-inline ml-3">
+                            <input class="mr-1" type="radio" value="ولي امر" formControlName="gender">ولي امر
+                        </label>
+                        <label class="radio-inline ml-3">
+                            <input class="mr-1" type="radio" value="معلم" formControlName="gender"> معلم
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class='col-4'>
+                        <div class='form-group'>
+                            <label class="control-label" style="margin-right:10px; color:white">اسم العضو </label>
+                            <input formControlName="userName" type="text"
+                                [ngClass]="{'is-invalid' : registerForm.get('userName').errors && registerForm.get('userName').touched}"
+                                class="form-control">
+                            <div class="invalid-feedback">ادخل اسمك </div>
+                        </div>
+                    </div>
+
+                    <div class='col-4'>
+                        <div class='form-group'>
+                            <label class="control-label" style="margin-right:10px; color:white">الاسم الاول باللغة
+                                العربية
+                            </label>
+                            <input formControlName="arabicName" type="text"
+                                [ngClass]="{'is-invalid' : registerForm.get('arabicName').errors && registerForm.get('arabicName').touched}"
+                                class="form-control">
+                            <div class="invalid-feedback">ادخل اسمك باللغة العربية </div>
+                        </div>
+                    </div>
+
+                    <div class='col-4'>
+                        <div class='form-group'>
+                            <label class="control-label" style="margin-right:10px; color:white">رقم هاتف العضو
+                            </label>
+                            <input formControlName="userPhone" type="text"
+                                [ngClass]="{'is-invalid' : registerForm.get('userPhone').errors && registerForm.get('userPhone').touched}"
+                                class="form-control">
+                            <div class="invalid-feedback">ادخل رقم هاتفك </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class='col-4'>
+                        <div class='form-group'>
+                            <label class="control-label" style="margin-right:10px; color:white">كلمة المرور </label>
+                            <input formControlName="password" type="password"
+                                [ngClass]="{'is-invalid' : registerForm.get('password').errors && registerForm.get('password').touched}"
+                                class="form-control">
+                            <div *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched"
+                                class="invalid-feedback"> أدخل كلمة السر</div>
+                            <div *ngIf="registerForm.get('password').hasError('minlength') && registerForm.get('password').touched"
+                                class="invalid-feedback"> يجب أن لا تقل كلمة السر عن أربعة خانات</div>
+                            <div *ngIf="registerForm.get('password').hasError('maxlength') && registerForm.get('password').touched"
+                                class="invalid-feedback"> يجب أن لا تزيد كلمة السر عن ثمان خانات</div>
+                        </div>
+                    </div>
+
+                    <div class='col-4'>
+                        <div class='form-group'>
+                            <label class="control-label" style="margin-right:10px; color:white">تاكيد كلمة المرور
+                            </label>
+                            <input formControlName="confirmPassword" type="password" [ngClass]="{'is-invalid' : registerForm.get('confirmPassword').hasError('required') 
+                            && registerForm.get('confirmPassword').touched 
+                            || registerForm.get('confirmPassword').touched && registerForm.hasError('mismatch')}"
+                                class="form-control">
+                            <div class="invalid-feedback" *ngIf="registerForm.get('confirmPassword').hasError('required') 
+                            && registerForm.get('confirmPassword').touched"> أدخل كلمة السر مرة أخرى</div>
+                            <div class="invalid-feedback"
+                                *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword').touched">
+                                لا تطابق كلمة السر</div>
+                        </div>
+                    </div>
+                    <div class='col-4'>
+                        <div class='form-group'>
+                            <label class="control-label" style="margin-right:10px; color:white"> تاريخ الميلاد </label>
+                            <input
+                                [ngClass]="{'is-invalid': registerForm.get('dateOfBirth').errors && registerForm.get('dateOfBirth').touched}"
+                                class="form-control" placeholder="اضعط لتختار تاريخ الميلاد" formControlName="dateOfBirth"
+                                type="text" bsDatepicker [bsConfig]='bsConfig'>
+                            <div class="invalid-feedback"
+                                *ngIf="registerForm.get('dateOfBirth').touched && registerForm.get('dateOfBirth').hasError('required')">
+                                أدخل
+                                تاريخ ميلادك</div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class='col-3'>
+                        <div class='form-group'>
+                            <label class="control-label" style="margin-right:10px; color:white">اسم ولي الامر كاملا
+                                باللغة العربية </label>
+                            <input formControlName="guardianName" type="text"
+                                [ngClass]="{'is-invalid' : registerForm.get('guardianName').errors && registerForm.get('guardianName').touched}"
+                                class="form-control">
+                            <div class="invalid-feedback">ادخل اسم ولي الامر </div>
+                        </div>
+                    </div>
+
+                    <div class='col-3'>
+                        <div class='form-group'>
+                            <label class="control-label" style="margin-right:10px; color:white">رقم هاتف ولي الامر
+                            </label>
+
+                            <input formControlName="guardianPhone" type="text"
+                                [ngClass]="{'is-invalid' : registerForm.get('guardianPhone').errors && registerForm.get('guardianPhone').touched}"
+                                class="form-control">
+                            <div class="invalid-feedback">ادخل رقم هاتف ولي الامر </div>
+                        </div>
+                    </div>
+
+                    <div class='col-3'>
+                        <div class='form-group'>
+                            <label class="control-label" style="margin-right:10px; color:white"> الفصل الدراسي </label>
+                                 <select formControlName='userClassId' class='form-control' [ngClass]="{'is-invalid' : registerForm.get('userClassId').errors && registerForm.get('userClassId').touched}">
+                                    <option value="">--  اختر الفصل الدراسي  --</option>
+                                    <option *ngFor='let c of userClass'  [value]="c.userClassId"  (onModalChange)='onCitySelected($event)' > {{c.userClassName}}</option>
+                                </select>
+                           <div class="invalid-feedback">  اختر الفصل الدراسي </div>
+                        </div>
+                    </div>
+
+                    <div class='col-3'>
+                        <div class='form-group'>
+                            <label class="control-label" style="margin-right:10px; color:white"> المجموعة  </label>
+                                 <select formControlName='userGroupId' class='form-control' [ngClass]="{'is-invalid' : registerForm.get('userGroupId').errors && registerForm.get('userGroupId').touched}">
+                                    <option value="">--  اختر المجموعة   --</option>
+                                    <option *ngFor='let c of userGroups'  [value]="c.userGroupId"  (onModalChange)='onCitySelected($event)' > {{c.userGroupName}}</option>
+                                </select>
+                           <div class="invalid-feedback">  اختر  المجموعة </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 style="color:white; font-family: 'JF-Flat'; font-size: bold;" class="text-center mb-0">محل الاقامة</h2>
+                            </div>
+
+                            <div class='col-3'>
+                                <div class='form-group'> 
+                                    <label class="control-label" style="margin-right:10px; color:white"> القرية  </label>
+                                         <select formControlName='userVillageId' class='form-control' [ngClass]="{'is-invalid' : registerForm.get('userVillageId').errors && registerForm.get('userVillageId').touched}">
+                                            <option value="">--  اختر القرية  --</option>
+                                            <option *ngFor='let c of userVillages'  [value]="c.userVillageId" (onModalChange)='onCitySelected($event)'> {{c.userVillageName}}</option>
+                                        </select>
+                                </div>
+                            </div>
+
+                            <div class='col-3'>
+                                <div class='form-group'> 
+                                    <label class="control-label" style="margin-right:10px; color:white"> المدينه  </label>
+                                         <select formControlName='userCityId' class='form-control' [ngClass]="{'is-invalid' : registerForm.get('userCityId').errors && registerForm.get('userCityId').touched}">
+                                            <option value="">--  اختر المدينه  --</option>
+                                            <option *ngFor='let c of cities'  [value]="c.userCityId" (onModalChange)='onCitySelected($event)'> {{c.userCityName}}</option>
+                                        </select>
+                                   <div class="invalid-feedback">ادخل مدينتك </div>
+                                </div>
+                            </div>
+
+
+                            <div class='col-3'>
+                                <div class='form-group'> 
+                                    <label class="control-label" style="margin-right:10px; color:white"> المحافظة  </label>
+                                         <select formControlName='userGovernorateId' class='form-control' [ngClass]="{'is-invalid' : registerForm.get('userGovernorateId').errors && registerForm.get('userGovernorateId').touched}">
+                                            <option value="">--  اختر المحافظة  --</option>
+                                            <option *ngFor='let c of userGovernorates'  [value]="c.userGovernorateId" (onModalChange)='onCitySelected($event)'> {{c.userGovernorateName}}</option>
+                                        </select>
+                                   <div class="invalid-feedback">ادخل محافظتك </div>
+                                </div>
+                            </div>
+
+                            <div class='col-3'>
+                                <div class='form-group'> 
+                                    <label class="control-label" style="margin-right:10px; color:white"> الدوله  </label>
+                                         <select formControlName='userCountryId' class='form-control' [ngClass]="{'is-invalid' : registerForm.get('userCountryId').errors && registerForm.get('userCountryId').touched}">
+                                            <option value="">--  اختر الدولة  --</option>
+                                            <option *ngFor='let c of userCountries'  [value]="c.userCountryId" (onModalChange)='onCitySelected($event)'> {{c.userCountryName}}</option>
+                                        </select>
+                                   <div class="invalid-feedback">ادخل محافظتك </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+                
+            </div>
+
+            <div class='form-group text-center'>
+                <button (click)='register()' class='btn btn-secondary btn-lg' type='submit'>اشتراك</button>
+                <button (click)='cancel()' class='btn btn-secondary btn-lg ml-2' type="button">ليس الان</button>
+            </div>
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,132 @@
+<div dir="rtl" class="modal-header">
+    <h4 class="modal-title">اضافة عضو جديد</h4>
+</div>
+<div dir="rtl" class="modal-body">
+    <div dir="rtl" class='container'>
+
+
+        <form #addUserForm='ngForm' id="addUserForm" (ngSubmit)='userToAdminTCreate(addUserForm)'>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <input type='text' class='form-control' name="userName" [(ngModel)]="model.userName"
+                        placeholder="User Name">
+                </div>
+                <div class="col-6  mb-2">
+
+                    <input type='text' class='form-control' name="password" [(ngModel)]="model.password"
+                        placeholder="Password">
+                </div>
+
+                <div class="col-6  mb-2">
+                    <input type='text' class='form-control' name="arabicName" [(ngModel)]="model.arabicName"
+                        placeholder="Arabic Name">
+                </div>
+                <div class="col-6  mb-2">
+
+                        <div  class="form-group">
+                            <label class="control-label " style="margin-right:25px">نوع العضو </label>
+                            <label class="radio-inline ml-3  ">
+                                <input class="mr-1" type="radio" value="طالب"  name="gender" [(ngModel)]="model.gender">طالب
+                            </label>
+                            <label class="radio-inline ml-3">
+                                <input class="mr-1" type="radio" value="طالبه"  name="gender" [(ngModel)]="model.gender">طالبه
+                            </label>
+                            <label class="radio-inline ml-3">
+                                <input class="mr-1" type="radio" value="ولي امر"  name="gender" [(ngModel)]="model.gender">ولي امر
+                            </label>
+                            <label class="radio-inline ml-3">
+                                <input class="mr-1" type="radio" value="معلم"  name="gender" [(ngModel)]="model.gender"> معلم
+                            </label>
+                        </div>
+                </div>
+                <div class="col-6 mb-2">
+                    <input type='text' class='form-control' name="userPhone" [(ngModel)]="model.userPhone"
+                        placeholder="User Phone">
+                </div>
+                <div class="col-6 mb-2">
+                    <input type='text' class='form-control' name="guardianName" [(ngModel)]="model.guardianName"
+                        placeholder="Guardian Name">
+                </div>
+                <div class="col-12 mb-2">
+                    <input type='text' class='form-control' name="guardianPhone" [(ngModel)]="model.guardianPhone"
+                        placeholder="Guardian Phone">
+                </div>
+
+                <div class="col-6 mb-2">
+                    <div class="form-inline">
+                        <label class="control-label mdb-select md-form" style="font-family: JF-Flat;"> الفصل الدراسي </label>
+                        <select name='userClassId' [(ngModel)]="model.userClassId" class='form-control'  >
+                            <option *ngFor='let c of userClass' [value]="c.userClassId"
+                                (onModalChange)='onCitySelected($event)'> {{c.userClassName}}</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="col-6 mb-2">
+                    <div class="form-inline">
+                        <label class="control-label mdb-select md-form" style="font-family: JF-Flat;"> المجموعة  </label>
+                        <select name='userGroupId' [(ngModel)]="model.userGroupId" class='form-control'  >
+                            <option *ngFor='let c of userGroups; let i =index' [value]="c.userGroupId"
+                             (onModalChange)='onCitySelected($event)'> {{c.userGroupName}}</option>
+                        </select>
+                    </div>
+                </div>
+
+
+
+                <div class="col-6 mb-2">
+                    <div class="form-inline">
+                        <label class="control-label" style="font-family: JF-Flat;"> القرية </label>
+                        <select name='userVillageId' [(ngModel)]="model.userVillageId" class='form-control'>
+                            <option *ngFor='let c of userVillages' [value]="c.userVillageId"
+                                (onModalChange)='onCitySelected($event)'> {{c.userVillageName}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-6 mb-2">
+                    <div class="form-inline">
+                        <label class="control-label" style="font-family: JF-Flat;"> المدينه </label>
+                        <select name='userCityId' [(ngModel)]="model.userCityId" class='form-control'>
+                            <option *ngFor='let c of cities' [value]="c.userCityId"
+                                (onModalChange)='onCitySelected($event)'> {{c.userCityName}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-6 mb-2">
+                    <div class="form-inline">
+                        <label class="control-label" style="font-family: JF-Flat;"> المحافظة </label>
+                        <select name='userGovernorateId' [(ngModel)]="model.userGovernorateId" class='form-control'>
+                            <option *ngFor='let c of userGovernorates' [value]="c.userGovernorateId"
+                                (onModalChange)='onCitySelected($event)'> {{c.userGovernorateName}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-6 mb-2">
+                    <div class="form-inline">
+                        <label class="control-label" style="font-family: JF-Flat;"> الدوله </label>
+
+                        <select name='userCountryId' [(ngModel)]="model.userCountryId" class='form-control'>
+                            <option *ngFor='let c of userCountries' [value]="c.userCountryId"
+                                (onModalChange)='onCitySelected($event)'> {{c.userCountryName}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+
+
+
+
+</div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()">الغاء</button>
+    <button type="submit" class="btn btn-success" form='addUserForm'>اضافة</button>
+</div>

@@ -1,0 +1,15 @@
+<div dir="rtl" class="modal-header ajs-header">
+    <h4 class="modal-title page-header"> اضافة فصل دراسي</h4>
+</div>
+<div dir="rtl" class="modal-body">
+    <form #insertForm='ngForm' id="insertForm" (ngSubmit)='insertUserClass(insertForm)'>
+        <input type='text' class='form-control' name="userClassName" [(ngModel)]="model.userClassName"
+            placeholder="اضافة اسم الفصل الدراسي">
+        <input type='text' class='form-control' name="notes" [(ngModel)]="model.notes" placeholder=" الملاحظات">
+    </form>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()">الغاء</button>
+    <button type="submit" class="btn btn-success" form='insertForm'>اضافة</button>
+</div>

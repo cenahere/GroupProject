@@ -1,0 +1,15 @@
+<div class="modal-header ajs-header">
+    <h4 class="modal-title page-header"> تعديل الدفع </h4>
+</div>
+<div class="modal-body">
+    <form #updateForm='ngForm' id="updateForm" (ngSubmit)='updateUserPayy(userPay)'>
+        <input type='text' class='form-control' name="attendSituation" [(ngModel)]="userPay.attendSituation">
+        <input type='text' class='form-control' name="price" [(ngModel)]="userPay.price">
+        <input type='text' class='form-control' name="discount" [(ngModel)]="userPay.discount">
+        <input type='date' hidden class='form-control' name="priceWithDescount" [(ngModel)]="userPay.priceWithDescount">
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-primary" form='updateForm'>تعديل</button>
+    <button type="button" class="btn btn-danger" (click)="bsModalRef.hide()">الغاء</button>
+</div>

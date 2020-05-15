@@ -1,0 +1,27 @@
+<div dir="rtl" class="modal-header ajs-header">
+    <h4 class="modal-title page-header"> دفع الطالب  </h4>
+</div>
+<div dir="rtl" class="modal-body">
+    <form #myForm='ngForm' id="myForm" >
+        <!-- <input type='text' class='form-control' name="attendSituation" [(ngModel)]="model.attendSituation"
+            placeholder="  موقف الدفع"> -->
+
+
+            <div class="form-group" >
+                <label for="attendSituation " class="control-label " style="margin-right:50%; color:white" >  موقف الدفع </label>
+                <select [(ngModel)]="model.attendSituation" class="form-control" style="width: 100%;" id="attendSituation" name="attendSituation">
+                  <option *ngFor="let pay of paySitiuation" [value]="pay.value">
+                    {{ pay.display }}
+                  </option>
+                </select>
+            </div>
+        <input type='number' class='form-control mb-2' name="price" [(ngModel)]="model.price" placeholder="المدفوع">
+        <!-- <input type='text' class='form-control' name="attendDate" [(ngModel)]="model.attendDate" placeholder=" التاريخ "> -->
+        <input type='number' class='form-control mb-2' name="discount" [(ngModel)]="model.discount" placeholder=" الخصم">
+        <input type='number' class='form-control mb-2' name="priceWithDescount" [(ngModel)]="model.priceWithDescount" placeholder=" المبلغ بعد الخصم">
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()">الغاء</button>
+    <button type="submit" class="btn btn-success" form='myForm' (click)="addUserPay()">اضافة</button>
+</div>

@@ -1,0 +1,136 @@
+<div class="rtl container mt-4">
+    <div class="row">
+        <div class="col-sm-4">
+            <h1>الملف الشخصي</h1>
+        </div>
+        <div class="col-sm-8">
+            <div *ngIf="editForm.dirty" class="alert alert-info">
+                <strong>تنويه :</strong>
+                يجب حفظ التعديلات التي تمت على ملفك الشخصي
+            </div>
+        </div>
+        <div class="col-sm-4 mt-3">
+            <div class="card text-center">
+                <img class="card-img-top img-thumbnail" src="{{photoUrl || 'assets/userPic.png'}}" alt="{{user.arabicName}}">
+                <div class="card-body">
+                    
+                    
+                    <div>
+                        <strong>الاسم باللغة العربية</strong>
+                        <p>{{user.arabicName}}</p>
+                    </div>
+
+                    <div>
+                        <strong>اسم ولي الامر</strong>
+                        <p>{{user.guardianName}}</p>
+                    </div>
+
+ 
+                    <div>
+                        <strong>تاريخ الميلاد </strong>
+                        <p>{{user.dateOfBirth | date:"longDate"}}</p>
+                    </div>
+                    <div>
+                        <strong>آخر ظهور </strong>
+                        <p>{{user.lastActive |timeAgo}}</p>
+                    </div>
+                    <div>
+                        <strong>مشترك منذ </strong>
+                        <p>{{user.created}}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div>
+                        <button form="editForm" (click)='updateUser();' [disabled]="!editForm.dirty" class="btn btn-success btn-block">حفظ
+                            التعديلات</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="tab-Panel text-center">
+                <tabset class="member-tabset">
+                    <tab heading="بياناتي">
+                        <form #editForm='ngForm' id="editForm">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>عن نفسي</h4>
+                                </div>
+                                <div class="card-text mt-3 p-2">
+                                    <textarea class="form-control border-white" name="aboutMe" [(ngModel)]="user.aboutMe"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="card mt-4">
+                                <div class="card-header">
+                                    <h4>تعديل رقم هاتفي</h4>
+                                </div>
+                                <div class="card-text mt-3">
+                                    <div class="form-inline p-2">
+                                        <label class="ml-4 " for="city">الرقم</label>
+                                        <input type="text" name="userPhone" [(ngModel)]="user.userPhone"
+                                            class="form-control ml-2">
+                                    </div>
+                                </div>
+                                <div class="card mt-4">
+                                    <div class="card-header">
+                                        <h4>تعديل الاسم باللغة العربية</h4>
+                                    </div>
+                                    <div class="card-text mt-3">
+                                        <div class="form-inline p-2">
+                                            <label class="ml-4 " for="city">الاسم</label>
+                                            <input type="text" name="arabicName" [(ngModel)]="user.arabicName"
+                                                class="form-control ml-2">
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-4">
+                                        <div class="card-header">
+                                            <h4>تعديل اسم ولي الامر</h4>
+                                        </div>
+                                        <div class="card-text mt-3">
+                                            <div class="form-inline p-2">
+                                                <label class="ml-4 " for="city">الاسم</label>
+                                                <input type="text" name="guardianName" [(ngModel)]="user.guardianName"
+                                                    class="form-control ml-2">
+                                            </div>
+                                        </div>
+    
+
+
+                                <div class="card mt-4">
+                                    <div class="card-header">
+                                        <h4>تعديل رقم ولي امري</h4>
+                                    </div>
+                                    <div class="card-text mt-3">
+                                        <div class="form-inline p-2">
+                                            <label class="ml-4 " for="guardianPhone">الرقم</label>
+                                            <input type="text" name="guardianPhone" [(ngModel)]="user.guardianPhone"
+                                                class="form-control ml-2">
+                                        </div>
+                                    </div>
+
+                            </div>
+
+
+
+                            </div>
+                                </div>
+                                </div>
+
+                        </form>
+
+                    </tab>
+
+                    <tab heading="صوري">
+                        <app-photo-editor (getMemberPhotoChange)='updateMainPhoto($event)' [photos]="user.photos"></app-photo-editor>
+
+                        <!-- <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery> -->
+                    </tab>
+
+
+                </tabset>
+            </div>
+        </div>
+    </div>
+</div>

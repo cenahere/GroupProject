@@ -1,0 +1,36 @@
+<div class=container>
+
+    <mat-form-field appearance="fill" style="text-align:right">
+        <mat-label style="margin-right:10px; color:black; font-weight: bold; font-family: JF-Flat;">بحث</mat-label>
+        <input matInput style='font-family: JF-Flat;' [(ngModel)]="term">
+    </mat-form-field>
+
+    <table class='table table-hover table-bordered'>
+        <tr>
+            <th>المسلسل</th>
+            <th>موقف الحضور</th>
+            <th>سبب الغياب</th>
+            <th>التاريخ</th>
+            <th>الملاحظات</th>
+            <th>عمليات</th>
+        </tr>
+        <tr *ngFor="let uc of userAttends  | filter:term | paginate: { itemsPerPage: 20, currentPage: p} ;  index as i">
+            <td>{{i+1}}</td>
+            <td>
+                {{uc.attendSituation}}
+            </td>
+            <td>{{uc.reasonOfAbsence}}</td>
+            <td>{{uc.attendDate | date :'longDate'}}</td>
+            <td> {{ uc.notes }}</td>
+            <td>
+                <div class="btn-group btn-group-sm" role="group">
+
+                    <button mat-raised-button color="primary" class="mr-2 btn" (click)='updateUserAttend(uc)'>تعديل</button>
+                    <button mat-raised-button color="accent" class="btn" (click)='deleteAttend(uc)'>حذف </button>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</div>
+<pagination-controls (pageChange)="p = $event" class='text-center mt-4'></pagination-controls>

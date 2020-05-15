@@ -1,0 +1,58 @@
+<nav class="rtl navbar navbar-expand-md navbar-dark bg-dark">
+    <a style='margin-top:-10px;color:white; font-family:"ToyorAljanah";font-size:2.2rem;font-weight: bolder;'
+        class="navbar-brand" href="#">
+        <i class="fa fa-pencil-square-o"></i> مجموعاتي<i class="fa fa-pencil-square-o"></i>
+    </a>
+    <ul *ngIf='loggedIn()' style="letter-spacing: 1px; font-weight:bold; font-family:'JF-Flat'; font-size:1.2rem"
+        class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a [routerLink]="['/members']" routerLinkActive="router-link-active"  class="nav-link" href="#">الرئيسية</a>
+        </li>
+        <li class="nav-item">
+            <a [routerLink]="['/members']" class="nav-link" href="#">بحث</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link notification" [routerLink]="['/messages']" routerLinkActive='active'>الرسائل 
+                <span *ngIf="count!='0'" class="badge beage-warning">{{count}}</span>
+            </a>        
+        </li>
+        <li class="nav-item">
+            <a   [routerLink]="['/charge']" class="nav-link" href="#">السداد الالكتروني</a>
+        </li>
+        <li class='nav-item'>
+            <a *hasRole="['Admin','VIP']" class="nav-link " [routerLink]="['/userToAdmin']" > الادارة</a>        
+        </li>
+
+
+    </ul>
+
+
+    <div dropdown *ngIf="loggedIn()" class="dropdown">
+        <a dropdownToggle  
+            style="letter-spacing: 1px ; font-weight: bold; font-family: 'JF-Flat' ; font-size: 1.2rem ;"
+            class="dropdown-toggle text-light nav-link">
+            مرحبا بك {{authService.decodedToken?.unique_name | titlecase}}
+        </a>
+        <div *dropdownMenu class="dropdown-menu mt-3">
+            <a [routerLink]="['members/edit']" class="dropdown-item"> <i class='fa fa-user-o' area-hidden='true'></i>الملف الشخصي</a>
+            <div class="dropdown-divider"></div>
+            <a (click)='loggedOut()' class="dropdown-item"><i class='fa fa-sign-out' area-hidden='true'></i> تسجيل الخروج</a>
+        </div>
+    </div>
+
+    <span *ngIf='loggedIn();'>
+        <img src="{{authService.currentUser?.photoUrl || 'assets/userPic.png'}}" alt="">
+    </span>
+
+
+    <form *ngIf='!loggedIn()' #loginForm='ngForm' class="form-inline my-2 my-lg-0 ml-5" (ngSubmit)="login()">
+        <input class="form-control mr-sm-2" type="text" required placeholder="اسم العضو" name='username'
+            [(ngModel)]='model.username' />
+        <input class="form-control mr-sm-2" type="password" required placeholder="كلمة المرور " name='password'
+            [(ngModel)]='model.password' />
+        <button style="font-weight:bold;font-family:'JF-Flat';font-size:1.0rem"
+            class="btn btn-secondary my-2 my-sm-0 ml-auto" type="submit" [disabled]='!loginForm.valid'>
+            تسجيل الدخول
+        </button>
+    </form>
+</nav>

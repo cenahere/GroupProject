@@ -1,0 +1,93 @@
+<div class="rtl container mt-4 ">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card text-center">
+                <img class='card-img-top img-thumbnail' src='{{user?.photoUrl || "assets/userPic.png"}}'  alt="">
+                <div class="card-body">
+
+                    <div>
+                        <strong>الاسم باللغة العربية</strong>
+                        <p>{{user.arabicName}}</p>
+                    </div>
+
+                    <div>
+                        <strong>اسم ولي الامر</strong>
+                        <p>{{user.guardianName}}</p>
+                    </div>
+
+                    <div>
+                        <strong>تاريخ الميلاد</strong>
+                        <p>{{dateOfBirth}}</p>
+                    </div>
+
+                    <div>
+                        <strong>اخر ظهور</strong>
+                        <p>{{user.lastActive | timeAgo}}</p>
+                    </div>
+
+                    <div>
+                        <strong>مشترك منذ</strong>
+                        <p>{{ created }}</p>
+                    </div>
+                    <div>
+                        <strong> الفصل الدراسي</strong>
+                        <p>{{ user.userClassName }}</p>
+                    </div>
+                    <div>
+                        <strong> محل الاقامة</strong>
+                        <p>{{ user.userVillageName }} , {{user.userCityName}}  , {{user.userGovernorateName}} , {{user.userCountryName}}</p>
+                    </div>
+
+                </div>
+
+                <div class="card-footer">
+                    <div (click)='selectTabs(3)'  class='btn btn-primary btn-block'>مراسلة</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            <div class="tab-panel">
+                <tabset class='member-tabset' #memberTabs>
+                    <tab heading=" تواصل مع {{user.arabicName}}">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>الهاتف</h4>
+                            </div>
+                            <div calss='card-text mt-3 p-2'>
+                                <p>{{user.userPhone}}</p>
+                            </div>
+
+                            <div class="card-header">
+                                <h4>هاتف ولي الامر</h4>
+                            </div>
+                            <div calss='card-text mt-3 p-2'>
+                                <p>{{user.guardianPhone}}</p>
+                            </div>
+
+
+                        </div>
+                    </tab>
+                    <tab heading="عن نفسي">
+
+                        <div class='card-text mt-3 p-2'>
+                            <p #about>{{user.aboutMe | slice: 0:150}}</p>
+                        </div>
+                        <button [hidden]="!showAbout" class='btn btn-primary' (click)="about.innerText=user.aboutMe; showAbout=false">اقرأ المزيد</button>
+
+                        <button [hidden]="showAbout" class='btn btn-primary' (click)="about.innerText=user.aboutMe.slice(0,200); showAbout=true">تصغير </button>
+
+                    </tab>
+                    <tab heading="صوري">
+                        <div class='gallery-wrapper'>
+                            <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class='ngx-gallery'></ngx-gallery>                          
+                        </div>                        
+                    </tab>
+                    <tab heading="الشات" (deselect)='deSelect();'>
+                        <app-member-messages  [recipientId]="user.id"></app-member-messages>
+                    </tab>
+                </tabset>
+            </div>
+        </div>
+    </div>
+</div>

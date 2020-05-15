@@ -1,0 +1,35 @@
+<div dir="rtl" class="modal-header ajs-header">
+    <h4 class="modal-title page-header">اضافة اختبار الطالب</h4>
+</div>
+<div class="alert alert-info">
+    <strong>تنويه :</strong>
+    الدرجة النهائية لاي اختبار هي مائه درجة
+</div>
+<div dir="rtl" class="modal-body">
+    <form #myForm="ngForm" id="myForm">
+        <input type="text" class="form-control mb-2" name="examTitle" [(ngModel)]="model.examTitle"
+            placeholder="عنوان الاختبار" />
+        <input type="number" class="form-control mb-2" name="result" [(ngModel)]="model.result"
+            placeholder="نتيجة الطالب" />
+        <!-- <input type="text" class="form-control" name="evaluation" [(ngModel)]="model.evaluation"
+            placeholder=" التقييم" /> -->
+
+            <div class="form-group" >
+                <label for="evaluation " class="control-label " style="margin-right:50%; color:white" >   التقييم </label>
+                <select [(ngModel)]="model.evaluation" class="form-control" style="width: 100%;" id="evaluation" name="evaluation">
+                  <option *ngFor="let evaluation of evaluationList" [value]="evaluation.value">
+                    {{ evaluation.display }}
+                  </option>
+                </select>
+            </div>
+        <input type="text" class="form-control" name="notes" [(ngModel)]="model.notes" placeholder=" ملاحظات" />
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()">
+        الغاء
+    </button>
+    <button type="submit" class="btn btn-success" form="myForm" (click)="addUserExamm()">
+        اضافة
+    </button>
+</div>

@@ -1,0 +1,29 @@
+
+<div class=container>
+    <!-- <button mat-raised-button color="accent" class="ml-4 btn mb-3" >اضافة</button> -->
+    
+      <table  class='table table-hover table-bordered'>
+        <tr>
+          <th>المسلسل</th>
+          <th> الفصل الدراسي</th>
+          <th>الملاحظات</th>
+          <th>عمليات</th>
+        </tr>
+        <tr *ngFor="let uc of userGroups | filter:term | paginate: { itemsPerPage: 20, currentPage: p} ;  index as i">
+          <td>{{i+1}}</td>
+          <td>{{ uc.userGroupName}}</td>
+          <!-- <td>{{ uc.userClassName}}</td> -->
+          <td> {{ uc.notes }}</td>
+          
+          <td>
+             <!-- c المتغير في التكرار -->
+             <!-- <button mat-raised-button color="primary" class="mr-2 btn" (click)='updateUserClass(uc)'>تعديل</button> -->
+             <!-- <button mat-raised-button color="accent" class="btn" (click)="deleteUserClass(uc)">حذف </button> -->
+             <button mat-raised-button color="primary" class="btn" [routerLink]="['/userclass/userGroup',uc.userGroupId]" >عرض الطلاب</button>
+    
+          </td>
+        </tr>
+      </table>
+    
+    </div>
+    <pagination-controls (pageChange)="p = $event" class='text-center mt-4'></pagination-controls>
